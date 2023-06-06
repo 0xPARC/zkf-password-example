@@ -1,30 +1,45 @@
-# circom-starter
+# ZKP Password Website
 
-A basic circom project using [Hardhat](https://github.com/nomiclabs/hardhat) and [hardhat-circom](https://github.com/projectsophon/hardhat-circom). This combines the multiple steps of the [Circom](https://github.com/iden3/circom) and [SnarkJS](https://github.com/iden3/snarkjs) workflow into your [Hardhat](https://hardhat.org) workflow.
+This repository is forked from https://github.com/0xPARC/circom-starter. You can (and should) read the [original README](./README_OLD.md) in order to get an understanding of how this repository is structured, in particular when it comes to the compilation and execution of the circuits.
 
-By providing configuration containing your Phase 1 Powers of Tau and circuits, this plugin will:
+## Problem Statement
 
-1. Compile the circuits
-2. Apply the final beacon
-3. Output your `wasm` and `zkey` files
-4. Generate and output a `Verifier.sol`
+Your task is to create a website that lets users log in by proving knowledge of a super secret password using a zero knowledge proof. This zero knowledge proof must not include the password itself. This repository contains several circuits, one of which may be a useful starting point for instantiating a protocol that allows users to prove knowledge of a password without revealing what the password is.
 
-## Documentation
+Your solution must be able to work end-to-end. This means you should be able to navigate to some localhost web-server, and get a webpage which prompts you to log in. You should be able to generate a ZK proof, either on the website itself, or on the command line, and send it to the web server, which should verify the proof, and show some secret hidden message to the user.
 
-See the source projects for full documentation and configuration
+## Scaffolding
 
-## Install
+This repository contains some scaffolding which takes you 80% of the way to the solution, leaving out only the ZK aspects for you to solve. Check out the [./src](./src/) directory to get started.
 
-`yarn` to install dependencies
+### Command-Line
 
-## Development builds
+Install the dependencies
 
-`yarn circom:dev` to build deterministic development circuits.
+```bash
+yarn
+```
 
-Further, for debugging purposes, you may wish to inspect the intermediate files. This is possible with the `--debug` flag which the `circom:dev` task enables by default. You'll find them (by default) in `artifacts/circom/`
+You can start the web-server using the following command:
 
-To build a single circuit during development, you can use the `--circuit` CLI parameter. For example, if you make a change to `hash.circom` and you want to _only_ rebuild that, you can run `yarn circom:dev --circuit hash`.
+```bash
+yarn server
+```
 
-## Production builds
+... after which you can navigate to http://localhost:3000
 
-`yarn circom:prod` for production builds (using `Date.now()` as entropy)
+On the command-line, you can generate a correct proof (which is stubbed for you to fill in) via the following command:
+
+```bash
+yarn getCorrectProof
+```
+
+You can also generate an incorrect proof using the following command:
+
+```bash
+yarn getWrongProof
+```
+
+## Example Solution
+
+You can see an example solution to the problem on [this branch](https://github.com/0xPARC/zkf-password-example/tree/solution) of this repository.

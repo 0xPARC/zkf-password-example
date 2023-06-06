@@ -1,0 +1,31 @@
+<!-- This file is served as the landing page of this website. It lets the user
+submit a ZKP to log in, and shows an error in the case that the ZKP was invalid. -->
+
+<html>
+  <body>
+    <style>
+      .error {
+        border: 1px solid red;
+        padding: 4px;
+        color: red;
+      }
+    </style>
+    please submit a valid ZK proof that you know the master password below:
+    <br />
+    <form method="post" action="/login">
+      <textarea name="fullProof"></textarea> <br />
+      <button type="submit">submit</button>
+    </form>
+
+    <div class="error" style="display: none">invalid proof, try again</div>
+
+    <script>
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const error = urlParams.get("error");
+      if (error) {
+        document.querySelector(".error").style.display = "unset";
+      }
+    </script>
+  </body>
+</html>
