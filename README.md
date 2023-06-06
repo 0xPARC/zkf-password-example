@@ -42,4 +42,10 @@ yarn getWrongProof
 
 ## Example Solution
 
-You can see an example solution to the problem on [this branch](https://github.com/0xPARC/zkf-password-example/tree/solution) of this repository.
+The solution in this branch is just one way to solve the above problem statement.
+
+I used the [hash.circom](./circuits/hash.circom) circuit in order to prove that I know the pre-image of a MIMC hash. The pre-image that I am proving that I know is the sha256 hash of the password. I.e. the ZKP is proving the following statement:
+
+> I know the string which when passed into the function f(x) = mimc(sha256(x)) results in the value Y.
+
+When the server checks this ZKP, it verifies that the proof is valid (i.e. the user actually knows the `x` corresponding to a particular `Y`), and also checks that the given `Y` corresponds to the master password that the user is aware of.
