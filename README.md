@@ -8,6 +8,10 @@ Your task is to create a website that lets users log in by proving knowledge of 
 
 Your solution must be able to work end-to-end. This means you should be able to navigate to some localhost web-server, and get a webpage which prompts you to log in. You should be able to generate a ZK proof, either on the website itself, or on the command line, and send it to the web server, which should verify the proof, and show some secret hidden message to the user.
 
+### Extension 1
+
+Build proof generation into the website: the user should enter their password, and the website should automatically generate the ZK proof in-browser and send it to the server.
+
 ## Scaffolding
 
 This repository contains some scaffolding which takes you 80% of the way to the solution, leaving out only the ZK aspects for you to solve. Check out the [./src](./src/) directory to get started.
